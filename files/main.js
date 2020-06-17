@@ -1777,56 +1777,45 @@ function startOrder(){
   return false;
 }
 
-// Функция + - для товаров
+// Функция + - для товара
 function quantity() {
-//Regulator Up копки + в карточке товара при добавлении в корзину
-qty_plus.onclick = function() {
-  var 
-    quantity = $(this).parent().parent().find('.quantity'),
-    maxVal = $(this).parent().parent().find('.quantity').attr('max'),
-    currentVal = parseInt(quantity.val());
-  if (!isNaN(currentVal) && !(currentVal >= maxVal)){
-    quantity.val(currentVal + 1);
-    quantity.trigger('keyup');
-  }
-  if (currentVal >= maxVal){
-    quantity.val(maxVal);
-  }
-  return false;
-};
-//Regulator Down копки - в карточке товара при добавлении в корзину
-qty_minus.onclick = function() {
-  var 
-    quantity = $(this).parent().parent().find('.quantity'),
-    maxVal = $(this).parent().parent().find('.quantity').attr('max'),
-    currentVal = parseInt(quantity.val());
-  if (!isNaN(currentVal) && !(currentVal <= 1) ){
-    quantity.val(currentVal - 1);
-    quantity.trigger('keyup');
-  }
-  if (currentVal > maxVal){
-    quantity.val(maxVal);
-  }
-  return false;
-};
-// Если вводят 0 то заменяем на 1
-$('.qty-wrap .quantity').on('change input', function(){
-  console.log($(this).val());
-  console.log($(this).attr('max'));
-  if($(this).val() < 1){
-    $(this).val(1);
-  }
-  if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
-    $(this).val($(this).attr('max'));
-  }
-});
+  //Regulator Up копки + в карточке товара при добавлении в корзину
+  $('.qty-plus').off('click').click(function(){
+    var
+      quantity = $(this).parent().find('.quantity, .cartqty'),
+      currentVal = parseInt(quantity.val());
+    if (!isNaN(currentVal)){
+      quantity.val(currentVal + 1);
+      quantity.trigger('keyup');
+      quantity.trigger('change');
+    }
+    return false;
+  });
+  //Regulator Down копки - в карточке товара при добавлении в корзину
+  $('.qty-minus').off('click').click(function(){
+    var
+      quantity = $(this).parent().find('.quantity, .cartqty'),
+      currentVal = parseInt(quantity.val());
+    if (!isNaN(currentVal)){
+      quantity.val(currentVal - 1);
+      quantity.trigger('keyup');
+      quantity.trigger('change');
+    }
+    return false;
+  });
+  // Если вводят 0 то заменяем на 1
+  $('.qty .quantity, .cartqty').change(function(){
+    if($(this).val() < 1){
+      $(this).val(1);
+    }
+  });
 }
 
 // Функция + - для товаров
 function quantityGoods() {
 //Regulator Up копки + в карточке товара при добавлении в корзину
 $('.qty-plus').click(function(){
-  var 
+  var
     quantity = $(this).parent().find('.quantity'),
     currentVal = parseInt(quantity.val());
   if (!isNaN(currentVal)){
@@ -1837,7 +1826,7 @@ $('.qty-plus').click(function(){
 });
 //Regulator Down копки - в карточке товара при добавлении в корзину
 $('.qty-minus').click(function(){
-  var 
+  var
     quantity = $(this).parent().find('.quantity'),
     currentVal = parseInt(quantity.val());
   if (!isNaN(currentVal) && !(currentVal <= 1) ){
@@ -1849,7 +1838,7 @@ $('.qty-minus').click(function(){
 // Если вводят 0 то заменяем на 1
 $('.qty-wrap .quantity').change(function(){
   if($(this).val() < 1){
-    $(this).val(1); 
+    $(this).val(1);
   }
 });
 }
@@ -2199,7 +2188,7 @@ function removeFromCartAll(e){
 
 // Корзина
 function ajaxnewqty(){
-  $('.cartqty').change(function(){
+  $('.cartqty').change($.debounce(300, function(){
     s = $(this);
     id = $(this).closest('tr').data('id');
     qty = $(this).val();
@@ -2233,7 +2222,8 @@ function ajaxnewqty(){
         }
       }
     })
-  })
+  }))
+  quantity()
 }
 
 // Удаление товара из корзины
