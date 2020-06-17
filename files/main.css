@@ -889,7 +889,7 @@ label.invalidInput {color: #E80636;font-size: 90%;}
 .cartTable .buttons {display: block;float: left;width: 100%;margin: 30px 0 0;}
 .cartTable .buttons .button {float: right;font-size: 14px;padding: 0 35px;}
 .cartTable .buttons .button i {margin-right: 10px;font-size: 21px;}
-.cartTable .inputText {text-align: center;padding: 0px;max-width: 80px;border-color: #e4e4e4;}
+.cartTable .inputText {text-align: center;padding: 0px;max-width: 50px;border-color: #e4e4e4;}
 .cartTable .inputText:disabled {background-color: #ececec;cursor: not-allowed;}
 
 /*** Личный кабинет (Страницы) ***/
@@ -1052,6 +1052,30 @@ label.invalidInput {color: #E80636;font-size: 90%;}
 .col-right {margin-bottom: 30px;}
 .col-left .block.catalog {display: none;}
 .discount-box .content .image {margin-bottom: 15px;}
+.cartTable thead {display: none;}
+.cartTable td.hide {display: none;}
+.cartTable tbody tr td, .cartTable thead tr td {border-bottom: 0;padding: 0;}
+.cartTable tbody tr {display: block;position: relative;width: 100%;margin-bottom: 20px;border-bottom: 1px solid #e4e4e4;}
+.cartTable tbody tr:last-child {margin: 0;}
+.cartTable tbody tr > td {display: inline-block;}
+.cartTable tbody tr .cart-name {display: block;text-align: center;margin-bottom: 0px;}
+.cartTable tbody tr td.image {display: block;text-align: center;border-right: 1px solid #e4e4e4;}
+.cartTable tbody tr td.image img {margin: 10px;}
+.cartTable tbody tr td.name {display: block;border-top: 0;border-left: 1px solid #e4e4e4;padding: 10px;}
+.cartTable tbody tr td.name a {margin-bottom: 0px;}
+.cartTable tbody tr td.name div {display: none;}
+.cartTable tbody tr td.cart-price.hide {display: none;}
+.cartTable tbody tr td.cart-price {display: block;position: relative;width: 100%;line-height: 38px;text-align: center;}
+.cartTable tbody tr td.closetd {position: absolute;right: 0;bottom: 0;line-height: 37px;padding: 0 10px;}
+.cartTable tbody tr td.cart-qty {position: absolute;left: 0;z-index: 1;border-bottom: 1px solid #e4e4e4;}
+.cartTable tbody tr td.cart-qty .inputText {border: 0;background-color: transparent;height: 39px;}
+.cartTable tfoot tr {display: block;float: left;width: 100%;border-bottom: 1px solid #e4e4e4;}
+.cartTable tfoot tr > td {float: left;}
+.cartTable tfoot tr > td:last-child {float: right;}
+.cartTable tfoot tr.actions {border-bottom: 0;}
+.cartTable tfoot tr.actions td {display: block;width: 100%;}
+.cartTable tfoot tr.discounttr td, .cartTable tfoot tr.total td {border-bottom: 0;}
+.formfast-cart {display: none !important;}
 .quickview {display: none !important;}
 .categories {display: flex;justify-content: center;align-items: center;flex-wrap: wrap;text-align: center;}
 .step li {padding: 10px;}
@@ -1103,30 +1127,6 @@ label.invalidInput {color: #E80636;font-size: 90%;}
 .goodsDataOpinionFormReset {width: 80px;}
 .step li {display: block;width: 100%;padding: 15px;}
 .step li.step_done {border-bottom: 1px solid rgba(255, 255, 255, 0.2);}
-.cartTable thead {display: none;}
-.cartTable td.hide {display: none;}
-.cartTable tbody tr td, .cartTable thead tr td {border-bottom: 0;padding: 0;}
-.cartTable tbody tr {display: block;position: relative;width: 100%;margin-bottom: 20px;border-bottom: 1px solid #e4e4e4;}
-.cartTable tbody tr:last-child {margin: 0;}
-.cartTable tbody tr > td {display: inline-block;}
-.cartTable tbody tr .cart-name {display: block;text-align: center;margin-bottom: 0px;}
-.cartTable tbody tr td.image {display: block;text-align: center;border-right: 1px solid #e4e4e4;}
-.cartTable tbody tr td.image img {margin: 10px;}
-.cartTable tbody tr td.name {display: block;border-top: 0;border-left: 1px solid #e4e4e4;padding: 10px;}
-.cartTable tbody tr td.name a {margin-bottom: 0px;}
-.cartTable tbody tr td.name div {display: none;}
-.cartTable tbody tr td.cart-price.hide {display: none;}
-.cartTable tbody tr td.cart-price {display: block;position: relative;width: 100%;line-height: 38px;text-align: center;}
-.cartTable tbody tr td.closetd {position: absolute;right: 0;bottom: 0;line-height: 37px;padding: 0 10px;}
-.cartTable tbody tr td.cart-qty {position: absolute;left: 0;z-index: 1;border-bottom: 1px solid #e4e4e4;}
-.cartTable tbody tr td.cart-qty .inputText {border: 0;background-color: transparent;height: 39px;max-width: 70px;}
-.cartTable tfoot tr {display: block;float: left;width: 100%;border-bottom: 1px solid #e4e4e4;}
-.cartTable tfoot tr > td {float: left;}
-.cartTable tfoot tr > td:last-child {float: right;}
-.cartTable tfoot tr.actions {border-bottom: 0;}
-.cartTable tfoot tr.actions td {display: block;width: 100%;}
-.cartTable tfoot tr.discounttr td, .cartTable tfoot tr.total td {border-bottom: 0;}
-.formfast-cart {display: none !important;}
 .thumblist {max-width: 500px;}
 #header .header-right .header-links {width: calc(100% - 220px);}
 #header .switcher-area {width: 220px;}
@@ -1186,6 +1186,7 @@ label.invalidInput {color: #E80636;font-size: 90%;}
 .cartTable tfoot tr.discounttr td.disc-name {max-width: 160px;}
 .cartTable tfoot tr.actions .buttons .button {display: block;width: 100%;}
 .cartTable tfoot tr.actions .buttons .button:first-child {margin-bottom: 10px;}
+.cartTable tbody tr td.cart-qty {position: relative;width: 100%;border-bottom: 0;}
 .formfast .form-list .fields.small.first {margin-right: 0px;}
 .thumblist {max-width: 220px;}
 #menu_offcanvas {width: 100%;}
