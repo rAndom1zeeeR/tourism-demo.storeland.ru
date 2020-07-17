@@ -682,7 +682,7 @@ $(document).ready(function(){
   updateVisibility (1);
 
   // Изменение цены товара при изменении у товара свойства для модификации
-  goodsDataProperties.each(function(){
+  goodsDataProperties.each(function(y){
     $(this).change(function(){
       var slug = getSlugFromGoodsDataFormModificationsProperties(goodsDataProperties),
         modificationBlock             = $('.goodsDataMainModificationsList[rel="'+slug+'"]'),
@@ -699,6 +699,7 @@ $(document).ready(function(){
         modificationMeasureDesc       = modificationBlock.find('[name="measure_desc"]').val(),
         modificationMeasurePrecision  = modificationBlock.find('[name="measure_precision"]').val(),
         modificationIsHasInCompareList= modificationBlock.find('[name="is_has_in_compare_list"]').val(),
+        modificationGoodsModImageId   = modificationBlock.find('[name="goods_mod_image_id"]').val(),
         goodsModificationId           = $('.goodsDataMainModificationId'),
         goodsPriceNow                 = $('.goodsDataMainModificationPriceNow'),
         goodsPriceOld                 = $('.goodsDataMainModificationPriceOld'),
@@ -762,11 +763,37 @@ $(document).ready(function(){
         }
         // Идентификатор товарной модификации
         goodsModificationId.val(modificationId);
+        // Меняет главное изображение товара на изображение с идентификатором goods_mod_image_id
+        function changePrimaryGoodsImage(goods_mod_image_id) {
+          // Если не указан идентификатор модификации товара, значит ничего менять не нужно.
+          if(1 > goods_mod_image_id) {
+            return true;
+          }
+          var
+            // Блок с изображением выбранной модификации товара
+            goodsModImageBlock = $('.thumblist [data-id="' + parseInt(goods_mod_image_id) + '"'),
+            // Блок, в котором находится главное изображение товара
+            MainImageBlock = $('.product-image'),
+            // Изображение модификации товара, на которое нужно будет изменить главное изображение товара.
+            MediumImageUrl = goodsModImageBlock.find('a').attr('href'),
+            // Главное изображение, в которое будем вставлять новое изображение
+            MainImage = MainImageBlock.find('img')
+          ;
+          // Если изображение модификации товара найдено - изменяем главное изображение
+          MainImage.attr('src', MediumImageUrl).parent().attr('href', MediumImageUrl);
+          // Изменяем идентификатор главного изображения
+          MainImageBlock.attr("data-id", parseInt(goods_mod_image_id));
+          return true;
+        }
+        // Обновляем изображние модификации товара, если оно указано
+        changePrimaryGoodsImage(modificationGoodsModImageId);
       } else {
         // Отправим запись об ошибке на сервер
         sendError('no modification by slug '+slug);
         alert('К сожалению сейчас не получается подобрать модификацию соответствующую выбранным параметрам.');
       }
+      // Обновляем возможность выбора другой модификации для текущих значений свойств модификации товара.
+      updateVisibility(y);
     });
   });
   
