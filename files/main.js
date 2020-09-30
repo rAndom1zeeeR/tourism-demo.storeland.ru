@@ -2461,6 +2461,7 @@ function indexPage() {
     dots: true,
     autoplay: true,
     autoplayHoverPause: true,
+    autoHeight: false,
     smartSpeed: 500,
     dotsSpeed: 400,
     mouseDrag: true,
