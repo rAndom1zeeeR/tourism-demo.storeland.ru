@@ -145,7 +145,7 @@
                 <div class="filter">
                   <label>{filter_attr_list.NAME}:</label><br />
                   <select onchange="$(this).attr('name', $(this).find('option:selected').attr('value') == -1 ? '' : $(this).find('option:selected').attr('rel'));this.form.submit();" name="{% FOR values %}{% IF filter_attr_list.values.CHECKED %}form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]{% ENDIF %}{% ENDFOR %}">
-                    <option> - все - </option>
+                    <option value="-1"> - все - </option>
                     {% FOR values %}
                       <option value="1" rel="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" {% IF filter_attr_list.values.CHECKED %}selected="selected"{% ENDIF %}{% IF filter_attr_list.values.CHECKED %}checked="checked"{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %}>{filter_attr_list.values.VALUE}</option>
                     {% ENDFOR %}
@@ -157,7 +157,7 @@
                 <div class="filter">
                   <label>{filter_prop_list.NAME}:</label><br />
                   <select onchange="$(this).attr('name', $(this).find('option:selected').attr('value') == -1 ? '' : $(this).find('option:selected').attr('rel'));this.form.submit();" name="{% FOR values %}{% IF filter_prop_list.values.CHECKED %}form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]{% ENDIF %}{% ENDFOR %}">
-                    <option> - все - </option>
+                    <option value="-1"> - все - </option>
                     {% FOR values %}
                       <option value="1" rel="form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" {% IF filter_prop_list.values.CHECKED %}selected="selected"{% ENDIF %} {% IF filter_prop_list.values.CHECKED %}checked="checked"{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %}>{filter_prop_list.values.VALUE}</option>
                     {% ENDFOR %}
